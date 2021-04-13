@@ -11,10 +11,7 @@ import java.util.Scanner;
 
 //출력
 //첫 줄에 해당 문자의 개수를 출력한다.
-class A01 {}
-
-class Main {
-	
+class A01 {
 	public int solution(String chars, char firstChar) {
 		
 		int answer = 0;
@@ -34,7 +31,7 @@ class Main {
 	
 	public static void main(String[] args){
 		
-		Main main = new Main();
+		A01 main = new A01();
 		
 		Scanner in = new Scanner(System.in);
 		
