@@ -1,6 +1,5 @@
 package A1;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /*설명
@@ -20,11 +19,9 @@ class A08 {
 	String solution(String input) {
 
 		String answer = "NO";
-		//문장에서 알파벳만 남기고 제거한다
-		//reverse해서 equalsIgnoreCase랑 비교해서 같으면 참 아니면 거짓
-		input = input.replaceAll("[^A-Z]", "");
+		input = input.toUpperCase().replaceAll("[^A-Z]", "");
 		String temp = new StringBuilder(input).reverse().toString();
-		if(input.equalsIgnoreCase(temp)) {
+		if(input.equals(temp)) {
 			answer = "YES";
 		}
 		return answer;
@@ -35,8 +32,8 @@ class A08 {
 		A08 main = new A08();
 		
 		Scanner in = new Scanner(System.in);
-		String input = in.next();
+		String input = in.nextLine();
 		
-		System.out.println(main.solution(input));
+		System.out.print(main.solution(input));
 	}
 }
