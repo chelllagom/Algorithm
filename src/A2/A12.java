@@ -22,10 +22,29 @@ M번의 수학성적이 주어지면 멘토와 멘티가 되는 짝을 만들 �
 
 class A12 {
 
-	int solution(int n, int m, int[][] mArr) {
+	int solution(int sNum, int tNum, int[][] tArr) {
+		int answer = 0;
 		
-		//다시풀기
-		return 1;
+		for(int mentor=1; mentor<=sNum; mentor++) {
+			for(int mentee=1; mentee<=sNum; mentee++) {
+				int cnt=0;
+				
+				for(int test=0; test<tNum; test++) {
+					int pointMentor=0, pointMentee=0;
+					
+					for(int rank=0; rank<sNum; rank++) {
+						if(tArr[test][rank] == mentor) pointMentor = rank;
+						if(tArr[test][rank] == mentee) pointMentee = rank;
+					}
+					//멘토가 멘티보다 등수가 높으면
+					if(pointMentor < pointMentee) cnt++;
+				}
+				//멘토가 모든 시험을 멘티보다 잘봤으면
+				if(cnt == tNum) answer++;
+			}
+		}
+		
+		return answer;
 	}
 	
 	public static void main(String[] args) {
@@ -35,10 +54,10 @@ class A12 {
 		Scanner in = new Scanner(System.in);
 		int n = in.nextInt();
 		int m = in.nextInt();
-		int[][] mArr = new int[m+1][n+1];
+		int[][] mArr = new int[m][n];
 		
-		for(int i=1; i<=m; i++) {
-			for(int j=1; j<=n; j++) {
+		for(int i=0; i<m; i++) {
+			for(int j=0; j<n; j++) {
 				mArr[i][j] = in.nextInt();
 			}
 		}
