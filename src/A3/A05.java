@@ -23,7 +23,7 @@ class A05 {
 	int solution(int x) {
 		int answer = 0, sum = 0, lt = 0;
 		int[] arr = new int[x/2 + 1];
-		
+		//배열 초기화
 		for(int i=0; i<x/2 + 1; i++) arr[i] = i+1;
 		
 		for(int rt=0; rt<x/2 + 1; rt++) {
