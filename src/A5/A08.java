@@ -26,26 +26,41 @@ N명의 대기목록 순서의 환자 위험도가 주어지면,
 출력
 M번째 환자의 몇 번째로 진료받는지 출력하세요.
 */
+class Person{
+	int id;
+	int priority;
+	public Person(int id, int priority) {
+		this.id = id;
+		this.priority = priority;
+	}
+}
+
 class A08 {
 	
-	int solution(int num, int point, int[] arr) {
-		int answer = 0, temp = 0, max = 0;
-		Queue<Integer> q = new LinkedList<>();
+	public int solution(int num, int point, int[] arr) {
+		int answer = 0;
+		Queue<Person> q = new LinkedList<>();
+		//초기화
 		for(int i=0; i<num; i++) {
-			if(max < arr[i]) max = arr[i];
-			if(i == point) temp = arr[i];
-			q.offer(arr[i]);
+			q.offer(new Person(i, arr[i]));
 		}
-		while(q.isEmpty()) {
-			answer++;
-			if(max == temp) break;
-			while(q.peek() != max) {
-				
-				q.offer(q.poll());
+		//탐색
+		while(!q.isEmpty()) {
+			Person temp = q.poll();
+			//우선순위 높은 사람 있나 확인
+			for(Person p : q) {
+				if(p.priority > temp.priority) {
+					q.offer(temp);
+					temp = null;
+					break;
+				}				
 			}
-			q.poll();
+			//본인이 가장 우선순위가 높으면
+			if(temp != null) {
+				answer++;
+				if(temp.id==point) return answer;
+			}
 		}
-
 		return answer;
 	}
 	
